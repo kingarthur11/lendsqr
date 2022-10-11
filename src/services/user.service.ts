@@ -1,6 +1,7 @@
 import { head } from 'ramda';
+import { Request } from 'express';
 import db from '../data/db';
-import { makeResponse } from '../contracts/baseResponse';
+import { makeResponse, BaseResponse } from '../contracts/baseResponse';
 import {
   HttpStatusCode,
 } from '../constants/constants';
@@ -33,6 +34,10 @@ export default class UserServices implements Required<UserServices> {
     }
   };
 
-
+  protected getUser = async (req: Request): Promise<BaseResponse<IUserDTO[] | any>> => {
+    const { id } = req.query;
+    let user = await db('users').where({id}).select('id', 'username', 'email', 'phone_number', 'created_at').then(head);
+    return makeResponse(user, HttpStatusCode.OK);
+  }
  
 }

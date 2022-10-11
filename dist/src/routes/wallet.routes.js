@@ -9,6 +9,7 @@ class WalletRoutes extends wallet_controller_1.WalletController {
             this.router.post('/fund', this.fundWalletAsync);
             this.router.post('/transfer', this.transferFundDataAsync);
             this.router.post('/withdraw', this.withdrawFundDataAsync);
+            this.router.get('/', this.getUserWalletAsync);
         };
         this.router = (0, express_1.Router)();
         this.routes();

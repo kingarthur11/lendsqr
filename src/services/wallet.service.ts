@@ -1,5 +1,7 @@
+import { head } from 'ramda';
+import { Request } from 'express';
 import db from '../data/db';
-import { makeResponse } from '../contracts/baseResponse';
+import { makeResponse, BaseResponse } from '../contracts/baseResponse';
 import {
   HttpStatusCode,
 } from '../constants/constants';
@@ -97,5 +99,11 @@ export default class WalletServices implements Required<WalletServices> {
 
     return makeResponse("funds withrawn successfully", HttpStatusCode.OK);
   };
+
+  protected getWallet =async (req: Request): Promise<BaseResponse<IWalletDTO[] | any>> => {
+    const { id } = req.query;
+    let wallet = await db('wallets').where({ id }).returning(['user_id', 'wallet_no', 'ledger_balance', 'available_balance']).then(head);
+    return makeResponse(wallet, HttpStatusCode.OK);
+  }
 
 }

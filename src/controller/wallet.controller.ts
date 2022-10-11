@@ -41,4 +41,9 @@ export class WalletController extends WalletServices {
     return res.status(data.statusCode).json(data);
   };
 
+  protected getUserWalletAsync =async (req: Request, res: Response): Promise<any> => {
+    const data = await this.getWallet(req);
+    return res.status(data.statusCode).json(data);
+  }
+
 }

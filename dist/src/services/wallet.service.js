@@ -12,6 +12,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+const ramda_1 = require("ramda");
 const db_1 = __importDefault(require("../data/db"));
 const baseResponse_1 = require("../contracts/baseResponse");
 const constants_1 = require("../constants/constants");
@@ -78,6 +79,11 @@ class WalletServices {
                 (0, db_1.default)('wallets').where({ user_id, wallet_no }).update({ ledger_balance, available_balance });
             });
             return (0, baseResponse_1.makeResponse)("funds withrawn successfully", constants_1.HttpStatusCode.OK);
+        });
+        this.getWallet = (req) => __awaiter(this, void 0, void 0, function* () {
+            const { id } = req.query;
+            let wallet = yield (0, db_1.default)('wallets').where({ id }).returning(['user_id', 'wallet_no', 'ledger_balance', 'available_balance']).then(ramda_1.head);
+            return (0, baseResponse_1.makeResponse)(wallet, constants_1.HttpStatusCode.OK);
         });
     }
 }

@@ -29,6 +29,10 @@ class WalletController extends wallet_service_1.default {
             const data = yield this.withdrawFundsServiceAsync(req.body);
             return res.status(data.statusCode).json(data);
         });
+        this.getUserWalletAsync = (req, res) => __awaiter(this, void 0, void 0, function* () {
+            const data = yield this.getWallet(req);
+            return res.status(data.statusCode).json(data);
+        });
     }
 }
 exports.WalletController = WalletController;

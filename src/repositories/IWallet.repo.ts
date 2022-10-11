@@ -1,6 +1,6 @@
 
 export interface IWalletDTO {
-  id?: number;
+  id: number;
   user_id: number;
   wallet_no: number;
   ledger_balance: number;

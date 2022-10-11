@@ -21,6 +21,10 @@ class UserController extends user_service_1.default {
             const data = yield this.addUserServiceAsync(req.body);
             return res.status(data.statusCode).json(data);
         });
+        this.getUserAsync = (req, res) => __awaiter(this, void 0, void 0, function* () {
+            const data = yield this.getUser(req);
+            return res.status(data.statusCode).json(data);
+        });
     }
 }
 exports.UserController = UserController;

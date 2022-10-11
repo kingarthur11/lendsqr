@@ -12,6 +12,7 @@ class UserRoutes extends UserController {
 
   private routes = () => {
     this.router.post('/create_account', this.createUserAccpAsync);
+    this.router.get('/', this.getUserAsync);
   };
 }
 export default new UserRoutes();

@@ -30,6 +30,11 @@ class UserServices {
                 return (0, baseResponse_1.makeResponse)(null, constants_1.HttpStatusCode.INTERNAL_ERROR, error.message);
             }
         });
+        this.getUser = (req) => __awaiter(this, void 0, void 0, function* () {
+            const { id } = req.query;
+            let user = yield (0, db_1.default)('users').where({ id }).select('id', 'username', 'email', 'phone_number', 'created_at').then(ramda_1.head);
+            return (0, baseResponse_1.makeResponse)(user, constants_1.HttpStatusCode.OK);
+        });
     }
 }
 exports.default = UserServices;

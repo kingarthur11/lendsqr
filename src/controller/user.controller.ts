@@ -18,5 +18,10 @@ export class UserController extends UserServices {
     // return res.json(data)
     return res.status(data.statusCode).json(data);
   };
+
+  protected getUserAsync =async (req: Request, res: Response): Promise<any> => {
+    const data = await this.getUser(req);
+    return res.status(data.statusCode).json(data);
+  }
  
 }
