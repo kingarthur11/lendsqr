@@ -1,4 +1,3 @@
-import { head } from 'ramda';
 import db from '../data/db';
 import { makeResponse } from '../contracts/baseResponse';
 import {
