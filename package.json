@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "npm run build && npm run serve",
+    "start": "npm run serve",
     "build": "npm run build-ts",
     "build:prod": "npm run write:file && npm run build-ts",
     "serve": "node ./dist/src/Program.js",
